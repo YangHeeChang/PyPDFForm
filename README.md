@@ -8,63 +8,89 @@
     <a href="https://pypistats.org/packages/pypdfform"><img src="https://img.shields.io/pypi/dm/pypdfform?logo=pypi&logoColor=white&label=downloads&labelColor=black&color=blue&style=for-the-badge"></a>
 </p>
 
-## Important Announcement
+## Goal
 
-Hello fellow Python developers!
+PyPDFForm은 PDF 양식 처리를 위한 무료 오픈 소스 Python 3 라이브러리입니다. 이 라이브러리는 PDF 양식과 상호작용하는 데 필요한 핵심 기능들을 포함하고 있습니다.
 
-Please read [this article](https://chinapandaman.github.io/PyPDFForm/news/2025-05-24/) about the upcoming v3.0.0 release, which contains some backward-incompatible changes.
+## Requirements
+#### Python3.12 기반
+ - cffi==1.17.1
+ - chardet==5.2.0
+ - cryptography==45.0.3
+ - pillow==11.2.1
+ - pycparser==2.22
+ - pypdf==5.6.0
+ - reportlab==4.4.1
 
-Happy hacking!
+## Docker image 다운로드 및 설치하는 방법
 
-## Introduction
+## Docker container 생성하고 실행하는 방법
 
-PyPDFForm is a free and open source pure-Python 3 library for PDF form processing. It contains the essential 
-functionalities needed to interact with PDF forms:
+## 디렉토리 구조
 
-* Inspect what data a PDF form needs to be filled with.
-* Fill a PDF form by simply creating a Python dictionary.
-* Create a subset of form widgets on a PDF.
-
-It also supports other common utilities such as extracting pages and merging multiple PDFs together.
-
-## Installing
-
-Install using [pip](https://pip.pypa.io/en/stable/):
-
-```shell script
-pip install PyPDFForm
+```bash
+pypdfform
+├── PyPDFForm              #주요 소스 코드가 들어있는 패키지 디렉토리
+│   ├── middleware/        #중간 처리 계층 로직 소크 코드 디렉토리
+│   └── widgets/           #각종 위젯들에 관한 소스 코드 디렉토리
+├── docs/                  #문서 디렉토리
+├── font_samples/          #font 샘플 파일들
+├── image_samples/         #image 샘플 파일
+├── pdf_samples/           #pdf 샘플 파일들
+├── scripts/               #프로젝트 관리 및 테스트 자동화 스크립트
+├── temp/                  #임시 파일 저장 디렉토리
+├── tests/                 #test 코드
+├── entrypoint.sh
+├── pyproject.toml
+├── mkdocs.yml
+├── README.md
+├── SECURITY.md
+├── conftest.py
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── Dockerfile
+├── LICENSE                #license(mit)
+└── Makefile
 ```
 
-## Quick Example
-![Check out the GitHub repository for a live demo if you can't see it here.](https://github.com/chinapandaman/PyPDFForm/raw/master/docs/img/demo.gif)
+## 실행을 마치고 종료하는 방법
 
-A sample PDF form can be found [here](https://github.com/chinapandaman/PyPDFForm/raw/master/pdf_samples/sample_template.pdf). Download it and try:
+``` bash
+# 1. 컨테이너에서 나가기
+exit
 
-```python
-from PyPDFForm import PdfWrapper
+# 2. 컨테이너 중지
+docker stop <CONTAINER_ID>
 
-filled = PdfWrapper("sample_template.pdf").fill(
-    {
-        "test": "test_1",
-        "check": True,
-        "test_2": "test_2",
-        "check_2": False,
-        "test_3": "test_3",
-        "check_3": True,
-    },
-)
+# 3. 컨테이너 삭제 
+docker rm <CONTAINER_ID>
 
-with open("output.pdf", "wb+") as output:
-    output.write(filled.read())
+# 4. 이미지 삭제
+docker image rm final_2021040006:v1
 ```
 
-After running the above code snippet you can find `output.pdf` at the location you specified, 
-and it should look like [this](https://github.com/chinapandaman/PyPDFForm/raw/v2.5.0/pdf_samples/sample_filled.pdf).
+## License
 
-## Documentation
-
-The official documentation can be found on [the GitHub page](https://chinapandaman.github.io/PyPDFForm/) of this repository.
-
-## Other Resources
-
-[Chicago Python User Group - Dec 14, 2023](https://youtu.be/8t1RdAKwr9w?si=TLgumBNXv9H8szSn)
+```
+    MIT License
+    
+    Copyright (c) 2020 Jinge Li
+    
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+    
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+```

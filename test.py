@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import os
-
 from PyPDFForm import PdfWrapper
 
 filled = PdfWrapper("test_sample.pdf").create_widget(

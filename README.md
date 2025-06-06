@@ -77,16 +77,19 @@ pypdfform
 ## 실행을 마치고 종료하는 방법
 
 ``` bash
-# 1. 컨테이너에서 나가기
+# 서버 종료 (control + c)
+^C
+
+# 컨테이너에서 나가기
 exit
 
-# 2. 컨테이너 중지
+# 컨테이너 중지
 docker stop <CONTAINER_ID>
 
-# 3. 컨테이너 삭제 
+# 컨테이너 삭제 
 docker rm <CONTAINER_ID>
 
-# 4. 이미지 삭제
+# 이미지 삭제
 docker image rm final_2021040006:v1
 ```
 

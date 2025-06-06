@@ -24,7 +24,28 @@ PyPDFForm은 PDF 양식 처리를 위한 무료 오픈 소스 Python 3 라이브
 
 ## Docker image 다운로드 및 설치하는 방법
 
+```bash
+# Docker 이미지로 로드
+docker load -i final_2021040006.tar
+
+# 로드된 이미지 확인
+docker images
+```
+
 ## Docker container 생성하고 실행하는 방법
+
+```bash
+# docker 이미지 실행 (-e 옵션의 호스트 ip와 port는 선택사항)
+docker run -it -p [호스트의 포트:8000] -e HOST_IP=[호스트의 IP] -e HOST_PORT=[호스트의 포트] final_2021040006:v1
+# ex) docker run -it -p 10205:8000 -e HOST_IP=203.255.81.132 -e HOST_PORT=10205 final_2021040006:v1
+
+# 예제 코드 실행
+python3 test.py
+# 예제 코드 실행으로 output.pdf가 생긴 것을 확인할 수 있음
+ls
+# 서버에 들어가 test_sample.pdf와 output.pdf를 통해 코드 실행 전후에 대해 확인 가능
+server
+```
 
 ## 디렉토리 구조
 
